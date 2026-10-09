@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Novaflow - Our Mission, Team & Engineering Principles</title>
+  <meta name="description" content="Discover how Novaflow is building the autonomous cloud orchestration platform trusted by thousands of engineering teams.">
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ==========================================
+       COMPONENT 1: Global Sticky Navbar
+       ========================================== -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="../../index.html" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900">Nova<span class="text-indigo-600">flow</span></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60" aria-label="Main Navigation">
+          <a href="../../index.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Home</a>
+          <a href="about.html" class="nav-item px-4 py-2 text-sm font-semibold text-indigo-600 bg-white rounded-full shadow-sm transition-all">About</a>
+          <a href="../../index.html#features" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Features</a>
+          <a href="../../index.html#pricing" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Pricing</a>
+          <a href="contact.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Contact</a>
+        </nav>
+
+        <!-- Auth Action Buttons (Desktop) -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="signin.html" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-indigo-600 transition-colors">
+            Sign In
+          </a>
+          <a href="signup.html" class="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-md shadow-indigo-600/25 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5">
+            Get Started Free
+            <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Toggle navigation menu">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 transition-all duration-300">
+      <div class="flex flex-col space-y-2">
+        <a href="../../index.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Home</a>
+        <a href="about.html" class="px-4 py-2.5 text-base font-semibold text-indigo-600 bg-indigo-50/80 rounded-xl">About</a>
+        <a href="../../index.html#features" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Features</a>
+        <a href="../../index.html#pricing" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Pricing</a>
+        <a href="contact.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Contact</a>
+        <div class="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2">
+          <a href="signin.html" class="w-full text-center py-2.5 font-semibold text-slate-700 hover:bg-slate-100 rounded-xl border border-slate-200">Sign In</a>
+          <a href="signup.html" class="w-full text-center py-2.5 font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md">Create Free Account</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       COMPONENT 2: Breadcrumb & Hero Mission Section
+       ========================================== -->
+  <section class="pt-12 pb-20 bg-hero-glow border-b border-slate-200/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Component -->
+      <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 text-sm text-slate-500">
+          <li class="inline-flex items-center">
+            <a href="../../index.html" class="hover:text-indigo-600 transition-colors inline-flex items-center">
+              <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-4 h-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+              <span class="ml-1 md:ml-2 text-slate-800 font-semibold">About Us</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Main Headline & Story -->
+      <div class="max-w-4xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/80">
+          Our Story & Purpose
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 mt-5 tracking-tight leading-[1.15]">
+          We Empower Engineers to <span class="text-gradient">Automate the Impossible</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
+          Novaflow was founded by infrastructure engineers frustrated by brittle deployment scripts, fragmented multi-cloud consoles, and late-night pager duty alerts. We envisioned an intelligent cloud fabric that is self-healing, globally distributed, and effortless to operate.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4 text-xs sm:text-sm font-semibold text-slate-500">
+          <span class="px-3.5 py-1.5 bg-white rounded-full border border-slate-200 shadow-sm">📍 San Francisco HQ</span>
+          <span class="px-3.5 py-1.5 bg-white rounded-full border border-slate-200 shadow-sm">🌍 100% Distributed Global Team</span>
+          <span class="px-3.5 py-1.5 bg-white rounded-full border border-slate-200 shadow-sm">🚀 Founded in 2022</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 3: Core Values Cards Component
+       ========================================== -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Guiding Principles
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          The Engineering Values that Drive Every Commit
+        </h2>
+        <p class="mt-3 text-slate-600">
+          These core beliefs define how we build products, treat teammates, and support our users.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Value 1 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Relentless Simplicity</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Complexity is the enemy of reliability. We turn cumbersome multi-cloud configurations into clean, intuitive abstractions.
+          </p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Radical Transparency</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Open incident reports, honest latency figures, and open-source contributions ensure our community can inspect and trust our platform.
+          </p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Zero-Trust Security</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Security cannot be an afterthought. We build end-to-end cryptographic verifications and compliance guardrails directly into every pipeline.
+          </p>
+        </div>
+
+        <!-- Value 4 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Obsessive Reliability</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Our customers run mission-critical production systems on our backbone. 99.999% uptime is our unwavering commitment.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 4: Company Journey / Interactive Timeline
+       ========================================== -->
+  <section class="py-24 bg-slate-50 border-t border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Our Growth
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          The Journey So Far
+        </h2>
+        <p class="mt-3 text-slate-600">From a weekend prototype to powering over 3 billion monthly requests.</p>
+      </div>
+
+      <!-- Vertical Timeline -->
+      <div class="relative border-l-2 border-indigo-200 ml-4 md:ml-32 space-y-12">
+        
+        <!-- Timeline Item 1 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-md">
+            22
+          </div>
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Q1 2022 • The Inception</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-1">Founded in San Francisco</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Started with 3 engineers seeking to build a zero-configuration cloud deployment engine. Raised $4.5M seed round led by Benchmark Capital.
+          </p>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-md">
+            23
+          </div>
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Q3 2023 • Scale & Series A</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-1">Public Beta & Global Edge Mesh</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Expanded to 60+ edge points of presence across North America and Europe. Crossed 10,000 active developers and closed $18M Series A.
+          </p>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-md">
+            24
+          </div>
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Q2 2024 • Enterprise Ready</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-1">SOC-2 Type II & Multi-Cloud Fabric</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Onboarded Fortune 500 enterprise customers in financial services and healthcare. Launched automated compliance guardrails.
+          </p>
+        </div>
+
+        <!-- Timeline Item 4 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold shadow-md">
+            26
+          </div>
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Present 2026 • Nova 3.0</span>
+          <h3 class="text-lg font-bold text-slate-900 mt-1">Autonomous AI Self-Healing Infrastructure</h3>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">
+            Pioneering autonomous Kubernetes remediation and predictive traffic scaling across 180+ countries worldwide.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 5: Team & Leadership Showcase
+       ========================================== -->
+  <section id="team" class="py-24 bg-white" data-tabs-container>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          The People Behind Novaflow
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Built by Systems Architects & Open-Source Maintainers
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Meet the experienced leaders steering Novaflow's product vision and global infrastructure.
+        </p>
+
+        <!-- Department Filter Tabs -->
+        <div class="inline-flex p-1.5 mt-8 bg-slate-100 rounded-2xl border border-slate-200 gap-1.5 flex-wrap justify-center">
+          <button data-tab-target="team-all" class="px-5 py-2 rounded-xl text-sm font-bold bg-indigo-600 text-white shadow-md transition-all">
+            All Team
+          </button>
+          <button data-tab-target="team-leadership" class="px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 transition-all">
+            Leadership
+          </button>
+          <button data-tab-target="team-engineering" class="px-5 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 transition-all">
+            Core Engineering
+          </button>
+        </div>
+      </div>
+
+      <!-- Team Grid (All) -->
+      <div id="team-all" data-tab-panel class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Member 1 -->
+        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm card-hover-effect">
+          <img class="w-full h-64 object-cover rounded-2xl mb-5" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Alexandra Vance">
+          <h4 class="text-xl font-bold text-slate-900">Alexandra Vance</h4>
+          <p class="text-sm font-semibold text-indigo-600 mb-2">CEO & Co-Founder</p>
+          <p class="text-xs text-slate-500 leading-relaxed">Former Principal Architect at AWS Lambda. Passionate about developer productivity and distributed systems.</p>
+          <div class="mt-4 pt-4 border-t border-slate-200 flex gap-3 text-slate-400">
+            <span class="hover:text-indigo-600 cursor-pointer">LinkedIn</span>
+            <span class="hover:text-indigo-600 cursor-pointer">Twitter/X</span>
+            <span class="hover:text-indigo-600 cursor-pointer">GitHub</span>
+          </div>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm card-hover-effect">
+          <img class="w-full h-64 object-cover rounded-2xl mb-5" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="David Sterling">
+          <h4 class="text-xl font-bold text-slate-900">David Sterling</h4>
+          <p class="text-sm font-semibold text-indigo-600 mb-2">CTO & Co-Founder</p>
+          <p class="text-xs text-slate-500 leading-relaxed">Maintainer of popular Kubernetes networking CRDs. 15+ years building hyperscale telemetry backbones.</p>
+          <div class="mt-4 pt-4 border-t border-slate-200 flex gap-3 text-slate-400">
+            <span class="hover:text-indigo-600 cursor-pointer">LinkedIn</span>
+            <span class="hover:text-indigo-600 cursor-pointer">Twitter/X</span>
+            <span class="hover:text-indigo-600 cursor-pointer">GitHub</span>
+          </div>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm card-hover-effect">
+          <img class="w-full h-64 object-cover rounded-2xl mb-5" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Dr. Meera Patel">
+          <h4 class="text-xl font-bold text-slate-900">Dr. Meera Patel</h4>
+          <p class="text-sm font-semibold text-indigo-600 mb-2">VP of Artificial Intelligence</p>
+          <p class="text-xs text-slate-500 leading-relaxed">PhD in Computer Science from MIT. Leading Novaflow's self-healing autonomic models.</p>
+          <div class="mt-4 pt-4 border-t border-slate-200 flex gap-3 text-slate-400">
+            <span class="hover:text-indigo-600 cursor-pointer">LinkedIn</span>
+            <span class="hover:text-indigo-600 cursor-pointer">Twitter/X</span>
+            <span class="hover:text-indigo-600 cursor-pointer">GitHub</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Panel: Leadership -->
+      <div id="team-leadership" data-tab-panel class="hidden grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm">
+          <h4 class="text-xl font-bold text-slate-900">Alexandra Vance</h4>
+          <p class="text-sm font-semibold text-indigo-600">Chief Executive Officer</p>
+        </div>
+        <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm">
+          <h4 class="text-xl font-bold text-slate-900">David Sterling</h4>
+          <p class="text-sm font-semibold text-indigo-600">Chief Technology Officer</p>
+        </div>
+      </div>
+
+      <!-- Panel: Engineering -->
+      <div id="team-engineering" data-tab-panel class="hidden text-center py-8">
+        <p class="text-slate-600">Our engineering core spans 45 distributed kernel and distributed systems contributors across 14 countries.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 6: Key Impact Metrics / Counter Cards
+       ========================================== -->
+  <section class="py-20 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        
+        <div class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+          <span class="text-4xl sm:text-5xl font-black text-indigo-400">$52M</span>
+          <p class="mt-2 text-sm font-semibold text-slate-300">Venture Capital Raised</p>
+          <p class="text-xs text-slate-400 mt-1">Series B led by Benchmark</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+          <span class="text-4xl sm:text-5xl font-black text-cyan-400">120+</span>
+          <p class="mt-2 text-sm font-semibold text-slate-300">Global Team Members</p>
+          <p class="text-xs text-slate-400 mt-1">Spanning 18 countries</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+          <span class="text-4xl sm:text-5xl font-black text-emerald-400">4,800+</span>
+          <p class="mt-2 text-sm font-semibold text-slate-300">Enterprise Customers</p>
+          <p class="text-xs text-slate-400 mt-1">Across finance, SaaS, & retail</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+          <span class="text-4xl sm:text-5xl font-black text-purple-400">99.999%</span>
+          <p class="mt-2 text-sm font-semibold text-slate-300">Historical Reliability</p>
+          <p class="text-xs text-slate-400 mt-1">Measured across 3 years</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 7: Culture & Workplace Photo Gallery
+       ========================================== -->
+  <section class="py-24 bg-white border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Life at Novaflow
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          A Culture Centered on Autonomy & Craftsmanship
+        </h2>
+        <p class="mt-3 text-slate-600">
+          We are asynchronous by default, remote-first by conviction, and united by our passion for high-performance software.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-3xl overflow-hidden shadow-md group relative">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80" alt="Team meeting" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-white font-bold text-sm">Annual Global Summit (Lisbon, 2025)</span>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden shadow-md group relative">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80" alt="Hackathon" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-white font-bold text-sm">Quarterly Internal Hackathon</span>
+          </div>
+        </div>
+        <div class="rounded-3xl overflow-hidden shadow-md group relative">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Remote workspace" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent flex items-end p-6">
+            <span class="text-white font-bold text-sm">Flexible Remote-First Workstyles</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 8: Awards & Recognition Component
+       ========================================== -->
+  <section class="py-16 bg-slate-50 border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8">Recognized by Global Tech Analysts</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm">
+          <span class="text-2xl">🏆</span>
+          <h4 class="font-bold text-slate-900 mt-2">Gartner Cool Vendor</h4>
+          <p class="text-xs text-slate-500 mt-1">Cloud Infrastructure 2024</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm">
+          <span class="text-2xl">⭐</span>
+          <h4 class="font-bold text-slate-900 mt-2">Forbes Cloud 100</h4>
+          <p class="text-xs text-slate-500 mt-1">Rising Star Winner</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm">
+          <span class="text-2xl">🥇</span>
+          <h4 class="font-bold text-slate-900 mt-2">Product Hunt</h4>
+          <p class="text-xs text-slate-500 mt-1">Developer Tool of the Year</p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl border border-slate-200/80 shadow-sm">
+          <span class="text-2xl">⚡</span>
+          <h4 class="font-bold text-slate-900 mt-2">G2 Leader</h4>
+          <p class="text-xs text-slate-500 mt-1">Continuous Delivery Grid</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 9: Open Positions / Careers Teaser
+       ========================================== -->
+  <section id="careers" class="py-24 bg-white border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+            We're Hiring
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+            Build the Future of Cloud Infrastructure
+          </h2>
+          <p class="mt-2 text-slate-600">Join our fully remote team and solve hard problems in distributed computing.</p>
+        </div>
+        <a href="contact.html" class="mt-4 md:mt-0 text-sm font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1.5">
+          View all 12 open roles
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- Job 1 -->
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 card-hover-effect">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="px-2.5 py-0.5 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded-full">Engineering</span>
+              <span class="text-xs text-slate-500">Remote (Global)</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Staff Distributed Systems Engineer (Rust / Go)</h3>
+          </div>
+          <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl text-center">
+            Apply Now
+          </a>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 card-hover-effect">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="px-2.5 py-0.5 text-xs font-semibold bg-purple-100 text-purple-800 rounded-full">AI & Machine Learning</span>
+              <span class="text-xs text-slate-500">Remote (US / EU)</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Senior Machine Learning Infrastructure Engineer</h3>
+          </div>
+          <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl text-center">
+            Apply Now
+          </a>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 card-hover-effect">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="px-2.5 py-0.5 text-xs font-semibold bg-emerald-100 text-emerald-800 rounded-full">Developer Relations</span>
+              <span class="text-xs text-slate-500">Remote (Global)</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Lead Developer Advocate & Technical Writer</h3>
+          </div>
+          <a href="contact.html" class="px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl text-center">
+            Apply Now
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 10: Backed By Tier-1 Investors
+       ========================================== -->
+  <section class="py-16 bg-slate-50 border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-8">Backed by World-Class Technology Investors</p>
+      <div class="flex flex-wrap justify-center items-center gap-12 opacity-75">
+        <span class="text-xl font-black text-slate-700">BENCHMARK</span>
+        <span class="text-xl font-black text-slate-700">SEQUOIA CAPITAL</span>
+        <span class="text-xl font-black text-slate-700">INDEX VENTURES</span>
+        <span class="text-xl font-black text-slate-700">ACCEL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 11: Community CTA Banner
+       ========================================== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950 p-8 sm:p-14 text-white text-center shadow-xl">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Join Our Global Engineering Community</h2>
+        <p class="mt-4 text-slate-300 max-w-2xl mx-auto">
+          Over 25,000 developers share best practices, open-source plugins, and architectural templates on our Discord and GitHub.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a href="https://github.com" target="_blank" rel="noopener" class="px-6 py-3.5 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors inline-flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Star on GitHub
+          </a>
+          <a href="contact.html" class="px-6 py-3.5 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-colors inline-flex items-center gap-2">
+            Join Developer Discord
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 12: Multi-Column Footer
+       ========================================== -->
+  <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12 border-b border-slate-800">
+        <div class="col-span-2">
+          <a href="../../index.html" class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <span class="text-2xl font-black text-white">Nova<span class="text-indigo-400">flow</span></span>
+          </a>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed max-w-sm">
+            Empowering engineering organizations to deploy and scale resilient distributed systems effortlessly.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Product</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="../../index.html#features" class="hover:text-white transition-colors">Features</a></li>
+            <li><a href="../../index.html#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">Architecture</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Company</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#team" class="hover:text-white transition-colors">Leadership</a></li>
+            <li><a href="#careers" class="hover:text-white transition-colors">Careers</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="signin.html" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Support Desk</a></li>
+            <li><a href="signup.html" class="hover:text-white transition-colors">Sign Up</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 Novaflow Technologies, Inc. All rights reserved.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top-btn" type="button" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-indigo-600 text-white shadow-xl opacity-0 pointer-events-none translate-y-4 hover:bg-indigo-700 transition-all duration-300" aria-label="Back to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

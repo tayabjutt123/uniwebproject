@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novaflow - Next-Gen Intelligent Cloud & Workflow Automation Platform</title>
+  <meta name="description" content="Novaflow is an enterprise cloud orchestration and workflow automation platform empowering modern engineering teams.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  
+  <!-- Tailwind CSS via CDN with custom configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ==========================================
+       COMPONENT 1: Global Sticky Glassmorphism Navbar
+       ========================================== -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900">Nova<span class="text-indigo-600">flow</span></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60" aria-label="Main Navigation">
+          <a href="index.html" class="nav-item px-4 py-2 text-sm font-semibold text-indigo-600 bg-white rounded-full shadow-sm transition-all">Home</a>
+          <a href="src/pages/about.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">About</a>
+          <a href="#features" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Features</a>
+          <a href="#pricing" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Pricing</a>
+          <a href="src/pages/contact.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Contact</a>
+        </nav>
+
+        <!-- Auth Action Buttons (Desktop) -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="src/pages/signin.html" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-indigo-600 transition-colors">
+            Sign In
+          </a>
+          <a href="src/pages/signup.html" class="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-md shadow-indigo-600/25 hover:shadow-lg hover:shadow-indigo-600/35 transition-all duration-200 hover:-translate-y-0.5">
+            Get Started Free
+            <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Toggle navigation menu">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 transition-all duration-300">
+      <div class="flex flex-col space-y-2">
+        <a href="index.html" class="px-4 py-2.5 text-base font-semibold text-indigo-600 bg-indigo-50/80 rounded-xl">Home</a>
+        <a href="src/pages/about.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">About</a>
+        <a href="#features" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Features</a>
+        <a href="#pricing" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Pricing</a>
+        <a href="src/pages/contact.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Contact</a>
+        <div class="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2">
+          <a href="src/pages/signin.html" class="w-full text-center py-2.5 font-semibold text-slate-700 hover:bg-slate-100 rounded-xl border border-slate-200">Sign In</a>
+          <a href="src/pages/signup.html" class="w-full text-center py-2.5 font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md">Create Free Account</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       COMPONENT 2: Hero Section Component
+       ========================================== -->
+  <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden bg-hero-glow">
+    <!-- Background Decor Elements -->
+    <div class="absolute inset-0 bg-mesh-pattern opacity-40 pointer-events-none"></div>
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-indigo-400/20 via-purple-400/20 to-cyan-400/20 blur-3xl -z-10 rounded-full animate-glow"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <!-- Announcement Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-indigo-50 border border-indigo-200/80 shadow-sm hover:border-indigo-300 transition-colors cursor-pointer">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+        </span>
+        <span class="text-xs sm:text-sm font-semibold text-indigo-900">Nova AI Engine 3.0 Released</span>
+        <span class="text-xs bg-indigo-600 text-white font-medium px-2 py-0.5 rounded-full">New</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 max-w-5xl mx-auto leading-[1.12]">
+        Orchestrate Intelligent Workflows at <span class="text-gradient">Hyperscale</span> Speed
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
+        Eliminate DevOps bottlenecks. Novaflow unifies continuous deployment, automated multi-cloud scaling, and real-time observability in one frictionless developer experience.
+      </p>
+
+      <!-- CTA Button Group -->
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="src/pages/signup.html" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all">
+          Start 14-Day Free Trial
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+        <button data-modal-open="demo-modal" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-4 text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300/80 rounded-xl shadow-sm hover:shadow transition-all group">
+          <span class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center mr-3 group-hover:bg-indigo-600 transition-colors">
+            <svg class="w-4 h-4 text-indigo-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+            </svg>
+          </span>
+          Watch 2-Min Demo
+        </button>
+      </div>
+
+      <!-- Social Proof & Trust Badges -->
+      <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-slate-500">
+        <div class="flex -space-x-2 overflow-hidden">
+          <img class="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User 1">
+          <img class="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="User 2">
+          <img class="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="User 3">
+          <img class="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="User 4">
+          <div class="inline-flex items-center justify-center h-9 w-9 rounded-full ring-2 ring-white bg-indigo-600 text-white font-bold text-xs">+4k</div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <div class="flex text-amber-400">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <span class="font-semibold text-slate-700">4.9 / 5.0</span>
+          <span>from 50,000+ engineers</span>
+        </div>
+      </div>
+
+      <!-- Interactive Mockup & Platform Dashboard Preview -->
+      <div class="mt-16 relative max-w-5xl mx-auto rounded-2xl p-2 sm:p-3 bg-gradient-to-b from-indigo-500/20 via-purple-500/10 to-transparent shadow-2xl">
+        <div class="rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl text-left">
+          
+          <!-- Browser Header bar -->
+          <div class="px-4 py-3 bg-slate-950 border-b border-slate-800/80 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+              <span class="ml-4 text-xs font-mono text-slate-400 hidden sm:inline-block">https://console.novaflow.io/cluster-ap-southeast</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> 99.99% Live
+              </span>
+            </div>
+          </div>
+
+          <!-- Mock Dashboard UI -->
+          <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-900">
+            <!-- Col 1: Real-time Metric -->
+            <div class="bg-slate-800/60 rounded-xl p-5 border border-slate-700/60">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Active Deployments</p>
+                  <h3 class="text-3xl font-extrabold text-white mt-1">1,482</h3>
+                </div>
+                <span class="px-2 py-1 text-xs font-bold text-emerald-400 bg-emerald-400/10 rounded-md">+18.4%</span>
+              </div>
+              <div class="mt-4 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                <div class="h-full bg-indigo-500 w-3/4 rounded-full"></div>
+              </div>
+            </div>
+
+            <!-- Col 2: Global Latency -->
+            <div class="bg-slate-800/60 rounded-xl p-5 border border-slate-700/60">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Edge Latency (Global)</p>
+                  <h3 class="text-3xl font-extrabold text-cyan-400 mt-1">11.8 ms</h3>
+                </div>
+                <span class="px-2 py-1 text-xs font-bold text-cyan-400 bg-cyan-400/10 rounded-md">Optimal</span>
+              </div>
+              <div class="mt-4 flex items-center justify-between text-xs text-slate-400">
+                <span>US-East: 8ms</span>
+                <span>EU-Central: 12ms</span>
+                <span>AP-Tokyo: 14ms</span>
+              </div>
+            </div>
+
+            <!-- Col 3: Automated Failover -->
+            <div class="bg-slate-800/60 rounded-xl p-5 border border-slate-700/60">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Security Posture</p>
+                  <h3 class="text-3xl font-extrabold text-emerald-400 mt-1">Zero Trust</h3>
+                </div>
+                <span class="px-2 py-1 text-xs font-bold text-emerald-400 bg-emerald-400/10 rounded-md">SOC-2 Verified</span>
+              </div>
+              <div class="mt-4 flex items-center gap-2 text-xs text-slate-300">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>mTLS Handshakes Active</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 3: Trusted By Logo Cloud Component
+       ========================================== -->
+  <section class="py-12 border-y border-slate-200/80 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-xs font-bold tracking-widest text-slate-400 uppercase mb-8">
+        Trusted by High-Velocity Engineering Teams Worldwide
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
+        <!-- Logo 1 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">DATAVERSE</span>
+        </div>
+        <!-- Logo 2 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">PULSE.IO</span>
+        </div>
+        <!-- Logo 3 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">CIRCLEX</span>
+        </div>
+        <!-- Logo 4 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 22 22 2 22"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">TRIANGLE</span>
+        </div>
+        <!-- Logo 5 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">GRIDFLOW</span>
+        </div>
+        <!-- Logo 6 -->
+        <div class="flex items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-pointer">
+          <svg class="w-7 h-7 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span class="font-extrabold text-slate-800 text-lg">AURORA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 4: Bento Grid Features Component
+       ========================================== -->
+  <section id="features" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Engineered for Scale
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Everything You Need to Deploy with Certainty
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Novaflow replaces fragmented toolchains with a cohesive orchestration fabric built for modern microservices and AI workloads.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Bento Card 1: Multi-cloud Deployment (Spans 2 cols) -->
+        <div class="md:col-span-2 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-sm card-hover-effect relative overflow-hidden">
+          <div class="flex items-center justify-between mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            </span>
+            <span class="px-3 py-1 text-xs font-semibold bg-emerald-100 text-emerald-800 rounded-full">Multi-Cloud</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Instant Automated Multi-Region Replication</h3>
+          <p class="text-slate-600 leading-relaxed max-w-xl">
+            Deploy across AWS, GCP, Azure, and bare-metal edge locations with a single configuration file. Novaflow handles DNS routing, SSL provisioning, and zero-downtime canary rollouts automatically.
+          </p>
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4 text-sm font-semibold text-indigo-600">
+            <span>Explore Cluster Orchestration</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: AI Automation -->
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-8 sm:p-10 shadow-xl card-hover-effect relative overflow-hidden">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 text-cyan-400 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <span class="px-3 py-1 text-xs font-semibold bg-cyan-400/20 text-cyan-300 rounded-full">Autonomous AI</span>
+          <h3 class="text-2xl font-bold mt-4 mb-3">Self-Healing Infrastructure</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Predictive machine learning models anticipate traffic surges, diagnose failing pods, and re-route requests before customer latency spikes occur.
+          </p>
+        </div>
+
+        <!-- Bento Card 3: Enterprise Security -->
+        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <span class="px-3 py-1 text-xs font-semibold bg-purple-100 text-purple-800 rounded-full">Enterprise Grade</span>
+          <h3 class="text-xl font-bold text-slate-900 mt-4 mb-3">Zero-Trust Guardrails</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Enforce role-based access control (RBAC), end-to-end envelope encryption, and automatic secret rotation meeting SOC-2 Type II standards.
+          </p>
+        </div>
+
+        <!-- Bento Card 4: Observability (Spans 2 cols) -->
+        <div class="md:col-span-2 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-sm card-hover-effect">
+          <div class="flex items-center justify-between mb-6">
+            <span class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center font-bold">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </span>
+            <span class="px-3 py-1 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded-full">Telemetry</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Unified Telemetry & OpenTelemetry Native Tracing</h3>
+          <p class="text-slate-600 leading-relaxed max-w-xl">
+            Correlate logs, metrics, and distributed traces in real-time. Debug microservice bottlenecks down to the exact line of code in milliseconds.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 5: Animated Metric / Stats Counters Component
+       ========================================== -->
+  <section class="py-20 bg-indigo-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-indigo-800">
+        
+        <div class="pt-6 lg:pt-0 px-4">
+          <p class="text-4xl sm:text-5xl font-black text-cyan-400">99.999%</p>
+          <p class="mt-2 text-sm sm:text-base font-semibold text-slate-200">Guaranteed SLA Uptime</p>
+          <p class="text-xs text-indigo-300 mt-1">Backed by multi-region redundancy</p>
+        </div>
+
+        <div class="pt-6 lg:pt-0 px-4">
+          <p class="text-4xl sm:text-5xl font-black text-emerald-400">&lt; 12ms</p>
+          <p class="mt-2 text-sm sm:text-base font-semibold text-slate-200">Global Edge Latency</p>
+          <p class="text-xs text-indigo-300 mt-1">180+ Points of Presence</p>
+        </div>
+
+        <div class="pt-6 lg:pt-0 px-4">
+          <p class="text-4xl sm:text-5xl font-black text-yellow-400">3.8B+</p>
+          <p class="mt-2 text-sm sm:text-base font-semibold text-slate-200">Monthly API Requests</p>
+          <p class="text-xs text-indigo-300 mt-1">Zero dropped packets</p>
+        </div>
+
+        <div class="pt-6 lg:pt-0 px-4">
+          <p class="text-4xl sm:text-5xl font-black text-pink-400">4.5x</p>
+          <p class="mt-2 text-sm sm:text-base font-semibold text-slate-200">Faster Deployment Cycles</p>
+          <p class="text-xs text-indigo-300 mt-1">Average customer velocity jump</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 6: Interactive Tabbed Product Showcase
+       ========================================== -->
+  <section class="py-24 bg-white" data-tabs-container>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Designed for Developers, Built for Scale
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Switch between developer views to see how Novaflow streamlines every step of your cloud pipeline.
+        </p>
+
+        <!-- Tab Selector Buttons -->
+        <div class="inline-flex p-1.5 mt-8 bg-slate-100 rounded-2xl border border-slate-200 gap-1.5 flex-wrap justify-center">
+          <button data-tab-target="tab-pipeline" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-indigo-600 text-white shadow-md transition-all">
+            CI/CD Pipeline
+          </button>
+          <button data-tab-target="tab-sdk" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 transition-all">
+            Node / Python SDK
+          </button>
+          <button data-tab-target="tab-config" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 transition-all">
+            Declarative YAML
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="max-w-4xl mx-auto bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl text-slate-200 font-mono text-sm overflow-x-auto">
+        
+        <!-- Panel 1: CI/CD Pipeline -->
+        <div id="tab-pipeline" data-tab-panel class="space-y-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-slate-800">
+            <span>Workflow: prod-release.novaflow.json</span>
+            <span class="text-emerald-400 font-semibold">● Status: Running (0m 42s)</span>
+          </div>
+          <pre class="text-emerald-400 font-semibold">1 | <span class="text-indigo-400">git push</span> origin main</pre>
+          <pre class="text-slate-300">2 | [NovaFlow Engine] Analyzing dependencies & building docker layers...</pre>
+          <pre class="text-slate-300">3 | [NovaFlow Cache] Layer cache hit (88.4% faster execution)</pre>
+          <pre class="text-cyan-400">4 | [Edge Replicate] Distributing artifacts to 14 global cloud zones...</pre>
+          <pre class="text-emerald-400 font-bold">5 | ✔ Deployment live at https://app.novaflow.io (Canary 100% healthy)</pre>
+        </div>
+
+        <!-- Panel 2: SDK Code -->
+        <div id="tab-sdk" data-tab-panel class="hidden space-y-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-slate-800">
+            <span>SDK Example: server.ts</span>
+            <span class="text-cyan-400 font-semibold">TypeScript v5.2</span>
+          </div>
+          <pre class="text-purple-400">import { NovaCluster, JobQueue } from '@novaflow/cloud';</pre>
+          <pre class="text-slate-300">const cluster = new NovaCluster({ region: 'global-anycast', scaleMin: 2 });</pre>
+          <pre class="text-slate-300">const workflow = cluster.definePipeline('ai-inference-runner', async (ctx) => {</pre>
+          <pre class="text-cyan-300">    const result = await ctx.runParallel(['task-a', 'task-b']);</pre>
+          <pre class="text-slate-300">    return { status: 'completed', metrics: result.metrics };</pre>
+          <pre class="text-slate-300">});</pre>
+        </div>
+
+        <!-- Panel 3: YAML Config -->
+        <div id="tab-config" data-tab-panel class="hidden space-y-4">
+          <div class="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-slate-800">
+            <span>Configuration: novaflow.yml</span>
+            <span class="text-amber-400 font-semibold">Specification v3</span>
+          </div>
+          <pre class="text-indigo-400">version: '3.4'</pre>
+          <pre class="text-slate-300">service:</pre>
+          <pre class="text-slate-300">  name: payments-microservice</pre>
+          <pre class="text-slate-300">  scaling:</pre>
+          <pre class="text-cyan-300">    metric: cpu-and-memory-threshold</pre>
+          <pre class="text-cyan-300">    target_latency_ms: 25</pre>
+          <pre class="text-slate-300">  zero_trust:</pre>
+          <pre class="text-emerald-400">    strict_mtls: true</pre>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 7: Testimonials Component
+       ========================================== -->
+  <section class="py-24 bg-slate-50 border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          User Testimonials
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Loved by Leaders at Fast-Growing Companies
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Hear how industry pioneers rely on Novaflow to power critical infrastructure.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between card-hover-effect">
+          <div>
+            <div class="flex text-amber-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-base italic">
+              "Novaflow slashed our deployment cycle from 45 minutes down to 90 seconds. Our engineering team can now release safely 20 times a day with zero fear of regressions."
+            </p>
+          </div>
+          <div class="mt-8 flex items-center gap-4 pt-6 border-t border-slate-100">
+            <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sarah Jenkins">
+            <div>
+              <h4 class="font-bold text-slate-900">Sarah Jenkins</h4>
+              <p class="text-xs text-slate-500">VP of Engineering at CloudScale</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between card-hover-effect">
+          <div>
+            <div class="flex text-amber-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-base italic">
+              "The self-healing cluster features saved us during Black Friday traffic surges. We handled 450,000 concurrent checkout sessions without a single dropped packet."
+            </p>
+          </div>
+          <div class="mt-8 flex items-center gap-4 pt-6 border-t border-slate-100">
+            <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Chen">
+            <div>
+              <h4 class="font-bold text-slate-900">Marcus Chen</h4>
+              <p class="text-xs text-slate-500">Chief Architect at PaySphere</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between card-hover-effect">
+          <div>
+            <div class="flex text-amber-400 mb-4">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-base italic">
+              "Migrating from legacy Jenkins pipelines was effortless. The visual orchestration builder and GitOps native integration make it an absolute joy to use."
+            </p>
+          </div>
+          <div class="mt-8 flex items-center gap-4 pt-6 border-t border-slate-100">
+            <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova">
+            <div>
+              <h4 class="font-bold text-slate-900">Elena Rostova</h4>
+              <p class="text-xs text-slate-500">DevOps Director at FinCorp Global</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 8: Tiered Pricing Component
+       ========================================== -->
+  <section id="pricing" class="py-24 bg-white border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Transparent Pricing
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Predictable Plans that Grow with You
+        </h2>
+        <p class="mt-4 text-slate-600">
+          Start for free, scale when your users surge. No hidden ingress or egress fees.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Plan 1: Developer -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between card-hover-effect">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">Starter</h3>
+            <p class="text-sm text-slate-500 mt-1">Ideal for indie developers & side projects</p>
+            <div class="mt-6 flex items-baseline">
+              <span class="text-5xl font-black text-slate-900">$0</span>
+              <span class="ml-2 text-slate-500">/ forever free</span>
+            </div>
+            <ul class="mt-8 space-y-4 text-sm text-slate-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Up to 3 active microservices
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                500 build minutes / month
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Community Discord support
+              </li>
+            </ul>
+          </div>
+          <a href="src/pages/signup.html" class="mt-8 block w-full py-3 text-center text-sm font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">
+            Get Started Free
+          </a>
+        </div>
+
+        <!-- Plan 2: Pro (Highlighted) -->
+        <div class="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 border-2 border-indigo-500 shadow-2xl relative flex flex-col justify-between card-hover-effect">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-cyan-400 text-slate-950 font-extrabold text-xs tracking-wider uppercase px-4 py-1.5 rounded-full shadow-md">
+            Most Popular
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white">Pro Scale</h3>
+            <p class="text-sm text-slate-400 mt-1">For growing startups & fast SaaS teams</p>
+            <div class="mt-6 flex items-baseline">
+              <span class="text-5xl font-black text-white">$49</span>
+              <span class="ml-2 text-slate-400">/ month</span>
+            </div>
+            <ul class="mt-8 space-y-4 text-sm text-slate-300">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Unlimited cloud services
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Autonomous AI self-healing
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Global Anycast CDN distribution
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Priority 24/7 Slack assistance
+              </li>
+            </ul>
+          </div>
+          <a href="src/pages/signup.html" class="mt-8 block w-full py-3.5 text-center text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-600/30 transition-all">
+            Start 14-Day Free Trial
+          </a>
+        </div>
+
+        <!-- Plan 3: Enterprise -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between card-hover-effect">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">Enterprise</h3>
+            <p class="text-sm text-slate-500 mt-1">For large organizations requiring bespoke SLAs</p>
+            <div class="mt-6 flex items-baseline">
+              <span class="text-5xl font-black text-slate-900">$199</span>
+              <span class="ml-2 text-slate-500">/ month</span>
+            </div>
+            <ul class="mt-8 space-y-4 text-sm text-slate-600">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Dedicated isolated infrastructure
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                SOC-2, HIPAA, & GDPR compliance
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Custom SLA & dedicated engineer
+              </li>
+            </ul>
+          </div>
+          <a href="src/pages/contact.html" class="mt-8 block w-full py-3 text-center text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors">
+            Contact Sales Team
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 9: Interactive FAQ Accordion Component
+       ========================================== -->
+  <section class="py-24 bg-slate-50" data-accordion-group>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-3 text-slate-600">
+          Everything you need to know about getting started with Novaflow.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- FAQ Item 1 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+          <button type="button" data-accordion-target="faq-1" aria-expanded="false" class="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+            <span>How does Novaflow connect with our existing GitHub / GitLab repos?</span>
+            <svg class="accordion-chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="faq-1" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+            Novaflow offers a 1-click GitHub App and GitLab integration. Once installed, it listens for webhooks, automatically spins up preview environments for pull requests, and deploys production pipelines on merge.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+          <button type="button" data-accordion-target="faq-2" aria-expanded="false" class="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+            <span>Can I deploy to multiple cloud providers simultaneously?</span>
+            <svg class="accordion-chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="faq-2" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+            Yes! Novaflow is completely cloud-agnostic. You can deploy frontends to edge CDN networks, APIs to AWS ECS or EKS, and machine learning models to GCP or specialized bare-metal GPU clusters seamlessly.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+          <button type="button" data-accordion-target="faq-3" aria-expanded="false" class="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+            <span>What happens after my 14-day free trial ends?</span>
+            <svg class="accordion-chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="faq-3" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+            No unexpected charges occur. If you choose not to upgrade to a paid Pro tier, your account automatically transitions to our perpetual Free Community Tier with 3 active services and 500 build minutes monthly.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+          <button type="button" data-accordion-target="faq-4" aria-expanded="false" class="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+            <span>Is Novaflow compliant with enterprise security standards?</span>
+            <svg class="accordion-chevron w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="faq-4" class="hidden px-6 pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+            Absolutely. We maintain active SOC-2 Type II certification, GDPR, HIPAA, and ISO 27001 compliance. All customer traffic and secrets are encrypted in transit via TLS 1.3 and at rest with AES-256 keys.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 10: Call-To-Action (CTA) Banner
+       ========================================== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative rounded-3xl bg-gradient-to-tr from-indigo-700 via-indigo-600 to-purple-700 p-8 sm:p-16 text-center text-white overflow-hidden shadow-2xl">
+        <!-- Background decorative rings -->
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-cyan-400/20 blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto">
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            Ready to Supercharge Your Engineering Velocity?
+          </h2>
+          <p class="mt-4 text-base sm:text-lg text-indigo-100 leading-relaxed">
+            Join thousands of developers shipping faster, safer, and with zero infrastructure anxiety. Set up your first pipeline in under 3 minutes.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="src/pages/signup.html" class="w-full sm:w-auto px-8 py-4 font-bold text-indigo-700 bg-white hover:bg-slate-50 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              Claim Your Free Trial
+            </a>
+            <a href="src/pages/contact.html" class="w-full sm:w-auto px-7 py-4 font-semibold text-white bg-indigo-800/60 hover:bg-indigo-800 border border-white/20 rounded-xl transition-all">
+              Schedule Architecture Review
+            </a>
+          </div>
+
+          <p class="mt-6 text-xs text-indigo-200">
+            ✓ No credit card required &nbsp;•&nbsp; 14-day free trial &nbsp;•&nbsp; Setup in 3 minutes
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       COMPONENT 11: Interactive Demo Video Modal
+       ========================================== -->
+  <div id="demo-modal" data-modal-container class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="relative bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span> Novaflow Interactive Overview Demo
+        </h3>
+        <button data-modal-close class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-6">
+        <div class="aspect-video bg-slate-950 rounded-2xl flex flex-col items-center justify-center border border-slate-800 relative group overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Video Placeholder" class="absolute inset-0 w-full h-full object-cover opacity-30">
+          <button class="relative z-10 w-20 h-20 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+          </button>
+          <p class="relative z-10 mt-4 text-sm font-semibold text-slate-200">Interactive Walkthrough • 2 min 15 sec</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       COMPONENT 12: Comprehensive Multi-Column Footer
+       ========================================== -->
+  <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Column -->
+        <div class="col-span-2">
+          <a href="index.html" class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <span class="text-2xl font-black text-white">Nova<span class="text-indigo-400">flow</span></span>
+          </a>
+          <p class="mt-4 text-sm text-slate-400 leading-relaxed max-w-sm">
+            The next-generation cloud orchestration and continuous delivery platform engineered for ultra-resilient engineering teams.
+          </p>
+          <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>All Global Systems Operational</span>
+          </div>
+        </div>
+
+        <!-- Links Col 1: Product -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Product</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+            <li><a href="src/pages/about.html" class="hover:text-white transition-colors">Architecture</a></li>
+            <li><a href="src/pages/signup.html" class="hover:text-white transition-colors">Releases</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2: Company -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Company</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="src/pages/about.html" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="src/pages/about.html#team" class="hover:text-white transition-colors">Leadership</a></li>
+            <li><a href="src/pages/about.html#careers" class="hover:text-white transition-colors">Careers</a></li>
+            <li><a href="src/pages/contact.html" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 3: Resources -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">Resources</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="src/pages/signin.html" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="src/pages/contact.html" class="hover:text-white transition-colors">API Reference</a></li>
+            <li><a href="src/pages/contact.html" class="hover:text-white transition-colors">Community</a></li>
+            <li><a href="src/pages/contact.html" class="hover:text-white transition-colors">Support Desk</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 Novaflow Technologies, Inc. All rights reserved.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-slate-400 transition-colors">Security Disclosures</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top-btn" type="button" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-indigo-600 text-white shadow-xl opacity-0 pointer-events-none translate-y-4 hover:bg-indigo-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Back to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

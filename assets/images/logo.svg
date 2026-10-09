@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 44" fill="none">
+  <defs>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="50%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+  </defs>
+  <!-- Icon Mark -->
+  <rect x="2" y="2" width="40" height="40" rx="10" fill="url(#logo-grad)"/>
+  <path d="M14 31V13L24 21.5L32 13V31" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="13" r="2.5" fill="#38BDF8"/>
+  <!-- Typography -->
+  <text x="52" y="28" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0F172A" letter-spacing="-0.5">Nova<tspan fill="#4F46E5">flow</tspan></text>
+</svg>

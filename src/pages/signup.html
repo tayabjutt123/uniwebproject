@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Create Your Free Novaflow Account</title>
+  <meta name="description" content="Start your 14-day free trial of Novaflow. Automate multi-cloud deployments, CI/CD pipelines, and infrastructure observability.">
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- ==========================================
+       COMPONENT 1: Global Sticky Navbar
+       ========================================== -->
+  <header class="sticky top-0 z-50 glass border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="../../index.html" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="text-2xl font-extrabold tracking-tight text-slate-900">Nova<span class="text-indigo-600">flow</span></span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60" aria-label="Main Navigation">
+          <a href="../../index.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Home</a>
+          <a href="about.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">About</a>
+          <a href="../../index.html#features" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Features</a>
+          <a href="../../index.html#pricing" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Pricing</a>
+          <a href="contact.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Contact</a>
+        </nav>
+
+        <!-- Auth Action Buttons (Desktop) -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="signin.html" class="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-indigo-600 transition-colors">
+            Sign In
+          </a>
+          <a href="signup.html" class="relative inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-md shadow-indigo-600/25 hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5">
+            Get Started Free
+            <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Toggle navigation menu">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 transition-all duration-300">
+      <div class="flex flex-col space-y-2">
+        <a href="../../index.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Home</a>
+        <a href="about.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">About</a>
+        <a href="../../index.html#features" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Features</a>
+        <a href="../../index.html#pricing" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Pricing</a>
+        <a href="contact.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Contact</a>
+        <div class="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2">
+          <a href="signin.html" class="w-full text-center py-2.5 font-semibold text-slate-700 hover:bg-slate-100 rounded-xl border border-slate-200">Sign In</a>
+          <a href="signup.html" class="w-full text-center py-2.5 font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-md">Create Free Account</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       COMPONENT 2: Split-Screen Auth & Benefits Container
+       ========================================== -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-hero-glow">
+    <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Sign Up Form Box (Spans 7 cols) -->
+      <div class="lg:col-span-7 bg-white p-8 sm:p-12 rounded-3xl border border-slate-200/80 shadow-2xl">
+        
+        <div class="mb-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
+            14-Day Full Access Trial
+          </span>
+          <h1 class="text-3xl font-extrabold text-slate-900 mt-3">Start Building with Novaflow</h1>
+          <p class="text-sm text-slate-600 mt-1">No credit card required. Free forever on Community tier.</p>
+        </div>
+
+        <!-- COMPONENT 10: Inline Feedback Alert -->
+        <div id="signup-feedback" class="hidden mb-6 p-4 rounded-xl text-sm font-medium bg-slate-50 border border-slate-200"></div>
+
+        <!-- COMPONENT 3: Social One-Click Registration -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <button type="button" class="flex items-center justify-center gap-2 py-3 px-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm transition-all">
+            <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            Google
+          </button>
+          <button type="button" class="flex items-center justify-center gap-2 py-3 px-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm transition-all">
+            <svg class="w-5 h-5 text-slate-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </button>
+        </div>
+
+        <!-- COMPONENT 4: Divider -->
+        <div class="relative flex py-2 items-center mb-6">
+          <div class="flex-grow border-t border-slate-200"></div>
+          <span class="flex-shrink mx-4 text-xs uppercase font-bold text-slate-400">or register with work email</span>
+          <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <!-- COMPONENT 5: Multi-Field Form -->
+        <form id="signup-form" class="space-y-5">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="signup-name" class="block text-sm font-bold text-slate-700 mb-1.5">Full Name</label>
+              <input type="text" id="signup-name" required placeholder="Alex Mercer" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 text-sm transition-all">
+            </div>
+            <div>
+              <label for="signup-company" class="block text-sm font-bold text-slate-700 mb-1.5">Company Name</label>
+              <input type="text" id="signup-company" placeholder="Acme Systems" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 text-sm transition-all">
+            </div>
+          </div>
+
+          <div>
+            <label for="signup-email" class="block text-sm font-bold text-slate-700 mb-1.5">Work Email</label>
+            <input type="email" id="signup-email" required placeholder="alex@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 text-sm transition-all">
+          </div>
+
+          <!-- COMPONENT 7: Interactive Plan Selection Cards -->
+          <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Select Trial Starting Plan</label>
+            <div class="grid grid-cols-2 gap-3">
+              <div data-plan-card class="p-3.5 rounded-xl border border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-600 cursor-pointer transition-all">
+                <input type="radio" name="plan" value="pro" checked class="hidden">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">Pro Scale</span>
+                  <span class="text-[10px] bg-indigo-600 text-white font-bold px-2 py-0.5 rounded-full">Recommended</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">14-Day Free Trial (Then $49/mo)</p>
+              </div>
+              <div data-plan-card class="p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-slate-300 transition-all">
+                <input type="radio" name="plan" value="starter" class="hidden">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-900">Community</span>
+                  <span class="text-[10px] text-slate-500 font-bold">$0 Free</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">Free forever for hobbyists</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMPONENT 6: Password Input with Live Strength Meter -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="signup-password" class="block text-sm font-bold text-slate-700">Create Password</label>
+              <span id="strength-label" class="text-xs font-semibold text-slate-400">Enter password</span>
+            </div>
+            <div class="relative">
+              <input type="password" id="signup-password" required placeholder="••••••••" class="w-full px-4 py-3 pr-11 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 text-sm transition-all">
+              <button type="button" data-toggle-password="signup-password" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600" aria-label="Toggle password visibility">
+                <svg class="eye-open w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                <svg class="eye-closed w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/></svg>
+              </button>
+            </div>
+
+            <!-- 4-Bar Strength Meter -->
+            <div class="flex gap-1.5 mt-2">
+              <div class="strength-bar-segment h-1.5 rounded-full flex-1 bg-slate-200"></div>
+              <div class="strength-bar-segment h-1.5 rounded-full flex-1 bg-slate-200"></div>
+              <div class="strength-bar-segment h-1.5 rounded-full flex-1 bg-slate-200"></div>
+              <div class="strength-bar-segment h-1.5 rounded-full flex-1 bg-slate-200"></div>
+            </div>
+
+            <!-- Password Requirements Checklist -->
+            <div class="grid grid-cols-2 gap-1.5 mt-2 text-[11px] text-slate-400">
+              <span id="rule-length" class="flex items-center gap-1.5">
+                <svg class="rule-icon w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+                8+ characters
+              </span>
+              <span id="rule-upper" class="flex items-center gap-1.5">
+                <svg class="rule-icon w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+                Uppercase & lowercase
+              </span>
+              <span id="rule-number" class="flex items-center gap-1.5">
+                <svg class="rule-icon w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+                At least 1 number
+              </span>
+              <span id="rule-special" class="flex items-center gap-1.5">
+                <svg class="rule-icon w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+                Special character
+              </span>
+            </div>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div>
+            <label for="signup-confirm-password" class="block text-sm font-bold text-slate-700 mb-1.5">Confirm Password</label>
+            <input type="password" id="signup-confirm-password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 text-sm transition-all">
+            <p id="password-match-error" class="hidden text-xs text-rose-500 mt-1 font-medium">Passwords do not match.</p>
+          </div>
+
+          <!-- COMPONENT 8: Terms & Privacy Consent Checkbox -->
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input id="signup-terms" type="checkbox" required class="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500">
+            </div>
+            <div class="ml-3 text-xs text-slate-600">
+              <label for="signup-terms">I agree to Novaflow's <a href="#" class="text-indigo-600 hover:underline">Terms of Service</a> and <a href="#" class="text-indigo-600 hover:underline">Privacy Policy</a>.</label>
+            </div>
+          </div>
+
+          <!-- COMPONENT 9: Submit Button -->
+          <button type="submit" class="w-full py-3.5 px-4 text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/40 transition-all">
+            Create Free Account
+          </button>
+
+        </form>
+
+        <!-- COMPONENT 11: Trust & Security Badges -->
+        <div class="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+          <span>✓ No credit card required</span>
+          <span>✓ 14-day free trial</span>
+          <span>🔒 256-bit SSL encrypted</span>
+        </div>
+
+        <div class="mt-4 text-center text-xs text-slate-600">
+          Already have an account? 
+          <a href="signin.html" class="font-bold text-indigo-600 hover:text-indigo-700 ml-1">Sign in here &rarr;</a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Product Value Proposition (Spans 5 cols) -->
+      <div class="hidden lg:flex lg:col-span-5 flex-col justify-between bg-slate-900 p-10 rounded-3xl text-white shadow-xl h-full border border-slate-800">
+        <div>
+          <span class="px-3 py-1 text-xs font-bold bg-indigo-500/20 text-indigo-300 rounded-full">Developer Guarantee</span>
+          <h2 class="text-2xl font-black mt-4 leading-snug">Everything You Need to Ship with Confidence</h2>
+          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            Every Novaflow trial comes equipped with full enterprise capability for 14 days.
+          </p>
+
+          <ul class="mt-8 space-y-4 text-sm text-slate-300">
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</span>
+              <span>Deploy unlimited staging and production services</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</span>
+              <span>Self-healing Kubernetes container orchestrator</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</span>
+              <span>Zero-downtime global Anycast DNS and CDN</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</span>
+              <span>Direct Slack & Discord engineer community access</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-slate-800">
+          <div class="flex items-center gap-3">
+            <div class="flex text-amber-400 text-sm">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span class="text-xs font-bold text-slate-300">Rated 4.9/5 by 50,000+ developers</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       COMPONENT 12: Footer
+       ========================================== -->
+  <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs gap-4">
+      <p>© 2026 Novaflow Technologies, Inc. All rights reserved.</p>
+      <div class="flex space-x-6">
+        <a href="../../index.html" class="hover:text-white transition-colors">Home</a>
+        <a href="about.html" class="hover:text-white transition-colors">About</a>
+        <a href="contact.html" class="hover:text-white transition-colors">Support</a>
+        <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+</body>
+</html>
