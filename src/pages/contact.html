@@ -211,15 +211,52 @@
         </div>
 
         <!-- COMPONENT 5: Live Form Status Alerts -->
-        <!-- Success Alert -->
-        <div id="form-success-alert" class="hidden mb-8 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600 font-bold">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          </div>
-          <div>
-            <h4 class="font-bold text-base">Message Sent Successfully!</h4>
-            <p class="success-subtitle text-sm text-emerald-700 mt-0.5">Thank you for contacting Novaflow. A solutions engineer has received your message and will respond within 15 minutes.</p>
-            <p class="text-xs text-emerald-600 mt-2 font-mono">Reference Ticket: #NF-2026-ENG</p>
+        <!-- Success Alert & Dynamic Submission Receipt -->
+        <div id="form-success-alert" class="hidden mb-8 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-emerald-50 to-teal-50/50 border-2 border-emerald-300 text-emerald-950 shadow-xl transition-all duration-300">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center shrink-0 text-white font-bold shadow-md shadow-emerald-600/30">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div class="flex-grow">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <h4 class="font-extrabold text-xl text-emerald-950 flex items-center gap-2">
+                  <span>Message Successfully Dispatched!</span>
+                  <span class="text-xs bg-emerald-200 text-emerald-900 font-bold px-2.5 py-0.5 rounded-full">Received</span>
+                </h4>
+                <span id="success-ticket" class="text-xs font-mono font-bold bg-white px-3 py-1.5 rounded-lg border border-emerald-300 text-emerald-800 shadow-sm">Ticket: #NF-2026-94812</span>
+              </div>
+              <p id="success-subtitle" class="text-sm text-emerald-800 mt-2 leading-relaxed font-medium">
+                Thank you! Your message has been received by the Novaflow engineering desk. A confirmation email has been dispatched to your address.
+              </p>
+              
+              <!-- Real-Time Submission Receipt Details -->
+              <div class="mt-5 p-4 sm:p-5 bg-white/95 rounded-2xl border border-emerald-200 text-xs shadow-sm space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Submission Summary</span>
+                  <span class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Formspree Endpoint Verified
+                  </span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-700">
+                  <p><span class="font-semibold text-slate-500">Contact:</span> <span id="success-sender-name" class="font-bold text-slate-900 ml-1">-</span></p>
+                  <p><span class="font-semibold text-slate-500">Work Email:</span> <span id="success-sender-email" class="font-bold text-slate-900 ml-1">-</span></p>
+                  <p><span class="font-semibold text-slate-500">Inquiry Topic:</span> <span id="success-sender-topic" class="font-bold text-indigo-600 ml-1">-</span></p>
+                  <p><span class="font-semibold text-slate-500">Guaranteed SLA:</span> <span class="font-bold text-emerald-700 ml-1">&lt; 15 Minutes Response</span></p>
+                </div>
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                  <span id="success-timestamp">Submitted: Just now</span>
+                  <span class="font-mono text-slate-400">Status: 200 OK (Delivered)</span>
+                </div>
+              </div>
+
+              <div class="mt-5 flex gap-3">
+                <button type="button" id="send-another-btn" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  Send Another Inquiry
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
 
@@ -229,7 +266,7 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </div>
           <div>
-            <h4 class="font-bold text-base">Unable to Submit Form</h4>
+            <h4 class="font-bold text-base">Incomplete Form Submission</h4>
             <p class="error-text text-sm text-rose-700 mt-0.5">Please check all required inputs and try again.</p>
           </div>
         </div>
