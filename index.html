@@ -63,6 +63,7 @@
           <a href="src/pages/about.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">About</a>
           <a href="#features" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Features</a>
           <a href="#pricing" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Pricing</a>
+          <a href="#a3-crud-section" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">CRUD</a>
           <a href="src/pages/contact.html" class="nav-item px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded-full transition-all">Contact</a>
         </nav>
 
@@ -101,6 +102,7 @@
         <a href="src/pages/about.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">About</a>
         <a href="#features" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Features</a>
         <a href="#pricing" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Pricing</a>
+        <a href="#a3-crud-section" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">CRUD</a>
         <a href="src/pages/contact.html" class="px-4 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-50 rounded-xl">Contact</a>
         <div class="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-2">
           <a href="src/pages/signin.html" class="w-full text-center py-2.5 font-semibold text-slate-700 hover:bg-slate-100 rounded-xl border border-slate-200">Sign In</a>
@@ -690,6 +692,154 @@
   </section>
 
   <!-- ==========================================
+       ASSIGNMENT 03: CRUD APPLICATION (Local Storage)
+       ========================================== -->
+  <section id="a3-crud-section" class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          CRUD
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          CRUD Dashboard for Platform Assets
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Manage your catalog of automation resources with local storage, live search, and category filtering.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div class="lg:col-span-2 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+          <form id="a3-record-form" class="space-y-5" novalidate>
+            <div>
+              <h3 id="a3-form-title" class="text-2xl font-bold text-slate-900">Add New Resource</h3>
+              <p class="mt-1 text-sm text-slate-500">Create and manage entries for your automation catalog.</p>
+            </div>
+
+            <div class="hidden">
+              <label for="a3-record-id" class="block text-sm font-semibold text-slate-700 mb-1.5">Record ID</label>
+              <input id="a3-record-id" type="hidden" value="">
+            </div>
+
+            <div>
+              <label for="a3-record-title" class="block text-sm font-semibold text-slate-700 mb-1.5">Resource Name</label>
+              <input id="a3-record-title" type="text" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition" placeholder="e.g. AI Deployment Workflow">
+            </div>
+
+            <div>
+              <label for="a3-record-category" class="block text-sm font-semibold text-slate-700 mb-1.5">Category</label>
+              <select id="a3-record-category" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition">
+                <option value="">Select a category</option>
+                <option value="Automation">Automation</option>
+                <option value="Workflow">Workflow</option>
+                <option value="Security">Security</option>
+                <option value="Monitoring">Monitoring</option>
+                <option value="Infrastructure">Infrastructure</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="a3-record-price" class="block text-sm font-semibold text-slate-700 mb-1.5">Price / Value</label>
+              <input id="a3-record-price" type="text" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition" placeholder="e.g. $49/month">
+            </div>
+
+            <div>
+              <label for="a3-record-status" class="block text-sm font-semibold text-slate-700 mb-1.5">Status</label>
+              <select id="a3-record-status" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition">
+                <option value="">Select status</option>
+                <option value="Active">Active</option>
+                <option value="Draft">Draft</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Archived">Archived</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="a3-record-description" class="block text-sm font-semibold text-slate-700 mb-1.5">Description</label>
+              <textarea id="a3-record-description" rows="4" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition" placeholder="Describe the resource, feature, or workflow detail."></textarea>
+            </div>
+
+            <div id="a3-form-error" class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"></div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button type="submit" id="a3-submit-button" class="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-md hover:bg-indigo-700 transition-all">
+                Save Record
+              </button>
+              <button type="button" id="a3-cancel-edit" class="hidden inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="lg:col-span-3 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div class="relative flex-1">
+              <input id="a3-search" type="search" placeholder="Search records..." class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition">
+            </div>
+            <div class="relative md:w-52">
+              <select id="a3-category-filter" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition">
+                <option value="">All categories</option>
+                <option value="Automation">Automation</option>
+                <option value="Workflow">Workflow</option>
+                <option value="Security">Security</option>
+                <option value="Monitoring">Monitoring</option>
+                <option value="Infrastructure">Infrastructure</option>
+              </select>
+            </div>
+            <button id="a3-clear-filters" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+              Clear filters
+            </button>
+          </div>
+
+          <div class="mt-5 flex items-center justify-between">
+            <p id="a3-results-count" class="text-sm font-semibold text-slate-600">Showing 0 of 0 records</p>
+          </div>
+
+          <div id="a3-record-list" class="mt-5 space-y-4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       ASSIGNMENT 03: API SECTION (Axios + public API)
+       ========================================== -->
+  <section id="a3-api-section" class="py-24 bg-white border-t border-slate-200/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200/60">
+          API Integration
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-4 tracking-tight">
+          Public Product Feed
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Pull live product listings from a public API and browse them with a search box.
+        </p>
+      </div>
+
+      <div class="mb-8 max-w-xl mx-auto">
+        <input id="a3-api-search" type="search" placeholder="Search API products..." class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition">
+      </div>
+
+      <div id="a3-api-loading" class="hidden items-center justify-center gap-3 rounded-2xl border border-indigo-100 bg-indigo-50 px-4 py-8 text-indigo-700 font-semibold">
+        <div class="h-5 w-5 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent"></div>
+        Loading product feed...
+      </div>
+
+      <div id="a3-api-error" class="hidden rounded-2xl border border-red-200 bg-red-50 px-5 py-6 text-red-700">
+        <p class="font-semibold">We could not fetch the products right now.</p>
+        <button id="a3-api-retry" type="button" class="mt-4 rounded-xl bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-700 transition-all">
+          Try again
+        </button>
+      </div>
+
+      <div id="a3-api-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================
        COMPONENT 9: Interactive FAQ Accordion Component
        ========================================== -->
   <section class="py-24 bg-slate-50" data-accordion-group>
@@ -896,6 +1046,9 @@
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
   </button>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/api.js" defer></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
